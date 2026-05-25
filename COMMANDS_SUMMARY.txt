@@ -1,0 +1,272 @@
+═══════════════════════════════════════════════════════════════════════════════
+                    CLOUDFORGE AI - GITHUB DEPLOYMENT COMMANDS
+═══════════════════════════════════════════════════════════════════════════════
+
+PROJECT: cloudforge-ai
+DESCRIPTION: AI-powered cloud architecture design generator
+TECH STACK: Next.js 15, TypeScript, Supabase, Google Gemini API
+
+═══════════════════════════════════════════════════════════════════════════════
+STEP 1: INITIALIZE GIT REPOSITORY
+═══════════════════════════════════════════════════════════════════════════════
+
+cd /Volumes/SSD/apps/CloudForgeAI
+git init
+git add .
+git commit -m "Initial commit: CloudForge AI v1.0.0
+
+- AI-powered cloud architecture generator
+- Google Gemini integration with model fallback
+- React Flow interactive diagrams with auto-layout
+- Supabase authentication (Email + Google OAuth)
+- PostgreSQL database with Row Level Security
+- Export to PNG, PDF, Terraform, and JSON
+- Responsive UI with dark/light mode theme
+- Complete history management
+- Production-ready Next.js 15 application"
+
+git branch -M main
+
+═══════════════════════════════════════════════════════════════════════════════
+STEP 2A: DEPLOY TO GITHUB (Using GitHub CLI - RECOMMENDED)
+═══════════════════════════════════════════════════════════════════════════════
+
+# Install GitHub CLI (if not installed)
+brew install gh
+
+# Authenticate with GitHub
+gh auth login
+
+# Create repository and push
+gh repo create cloudforge-ai --public --source=. --remote=origin --push
+
+# Open in browser
+gh repo view --web
+
+═══════════════════════════════════════════════════════════════════════════════
+STEP 2B: DEPLOY TO GITHUB (Manual Method)
+═══════════════════════════════════════════════════════════════════════════════
+
+# 1. Create repository on GitHub:
+#    - Go to https://github.com/new
+#    - Repository name: cloudforge-ai
+#    - Description: AI-powered cloud architecture design generator
+#    - Visibility: Public
+#    - DO NOT initialize with README, .gitignore, or license
+#    - Click "Create repository"
+
+# 2. Add remote and push (replace 'yourusername'):
+git remote add origin https://github.com/yourusername/cloudforge-ai.git
+git push -u origin main
+
+═══════════════════════════════════════════════════════════════════════════════
+STEP 3: DEPLOY TO PRODUCTION (Choose One Platform)
+═══════════════════════════════════════════════════════════════════════════════
+
+─────────────────────────────────────────────────────────────────────────────
+OPTION 1: VERCEL (RECOMMENDED)
+─────────────────────────────────────────────────────────────────────────────
+
+# Via CLI:
+npm install -g vercel
+vercel login
+vercel --prod
+
+# Via Web:
+# 1. Visit https://vercel.com/new
+# 2. Import your GitHub repository: cloudforge-ai
+# 3. Add environment variables (see below)
+# 4. Click "Deploy"
+
+─────────────────────────────────────────────────────────────────────────────
+OPTION 2: NETLIFY
+─────────────────────────────────────────────────────────────────────────────
+
+npm install -g netlify-cli
+netlify login
+netlify init
+netlify deploy --prod
+
+─────────────────────────────────────────────────────────────────────────────
+OPTION 3: RAILWAY
+─────────────────────────────────────────────────────────────────────────────
+
+npm install -g @railway/cli
+railway login
+railway init
+railway variables set GEMINI_API_KEY=your_key
+railway variables set NEXT_PUBLIC_APP_URL=https://your-app.up.railway.app
+railway variables set NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
+railway variables set NEXT_PUBLIC_SUPABASE_ANON_KEY=your_anon_key
+railway up
+
+═══════════════════════════════════════════════════════════════════════════════
+ENVIRONMENT VARIABLES (Required for All Platforms)
+═══════════════════════════════════════════════════════════════════════════════
+
+GEMINI_API_KEY=your_gemini_api_key_here
+NEXT_PUBLIC_APP_URL=https://your-production-domain.com
+NEXT_PUBLIC_SUPABASE_URL=https://your-project-ref.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJ...your_supabase_anon_key
+
+Get API Keys:
+- Gemini API: https://aistudio.google.com/app/apikey
+- Supabase: https://supabase.com → New Project → Settings → API
+
+═══════════════════════════════════════════════════════════════════════════════
+STEP 4: SUPABASE DATABASE SETUP
+═══════════════════════════════════════════════════════════════════════════════
+
+1. Create a new project at https://supabase.com
+2. Go to SQL Editor
+3. Copy and run the SQL from: supabase/schema.sql
+4. Enable Email authentication (Authentication → Providers)
+5. Get your credentials (Settings → API)
+
+═══════════════════════════════════════════════════════════════════════════════
+STEP 5: POST-DEPLOYMENT CONFIGURATION
+═══════════════════════════════════════════════════════════════════════════════
+
+1. Update Supabase Redirect URLs:
+   - Supabase Dashboard → Authentication → URL Configuration
+   - Site URL: https://your-production-domain.com
+   - Redirect URLs: Add https://your-production-domain.com/auth/callback
+
+2. Update Google OAuth (if using):
+   - Google Cloud Console → Credentials
+   - Add authorized redirect URI: https://xxx.supabase.co/auth/v1/callback
+
+3. Test your deployment:
+   - Visit https://your-domain.com
+   - Sign up / Sign in
+   - Generate an architecture
+   - Test exports
+
+═══════════════════════════════════════════════════════════════════════════════
+STEP 6: GITHUB REPOSITORY ENHANCEMENTS
+═══════════════════════════════════════════════════════════════════════════════
+
+# Add topics
+gh repo edit --add-topic "nextjs,typescript,ai,cloud-architecture,react,supabase,gemini,saas"
+
+# Enable features
+gh repo edit --enable-discussions
+gh repo edit --enable-issues
+
+# Create first release
+git tag -a v1.0.0 -m "CloudForge AI v1.0.0 - Initial Release"
+git push origin v1.0.0
+gh release create v1.0.0 --title "v1.0.0 🚀" --notes "Initial release"
+
+═══════════════════════════════════════════════════════════════════════════════
+MAINTENANCE COMMANDS
+═══════════════════════════════════════════════════════════════════════════════
+
+# Local development
+npm run dev
+
+# Build for production
+npm run build
+
+# Update dependencies
+npm update
+
+# Security audit
+npm audit
+npm audit fix
+
+# New feature branch
+git checkout -b feature/feature-name
+git add .
+git commit -m "feat: description"
+git push origin feature/feature-name
+
+# Deploy updates
+git push origin main  # Auto-deploys on Vercel/Netlify
+
+═══════════════════════════════════════════════════════════════════════════════
+TROUBLESHOOTING
+═══════════════════════════════════════════════════════════════════════════════
+
+Build fails:
+  rm -rf .next node_modules
+  npm install
+  npm run build
+
+Environment variables not working:
+  - Verify in platform dashboard
+  - Redeploy after changes
+  - Check for typos
+
+Database connection fails:
+  - Verify Supabase credentials
+  - Check project is not paused
+  - Restart Supabase project
+
+═══════════════════════════════════════════════════════════════════════════════
+DOCUMENTATION FILES
+═══════════════════════════════════════════════════════════════════════════════
+
+README.md                 - Main documentation with features and overview
+SETUP.md                  - Detailed setup guide for local development
+GITHUB_SETUP.md           - Complete GitHub deployment workflow
+DEPLOYMENT_COMMANDS.md    - Comprehensive deployment guide for all platforms
+QUICK_START.md            - Fast reference for common operations
+CONTRIBUTING.md           - Guidelines for contributors
+CLAUDE.md                 - Architecture and technical documentation
+LICENSE                   - MIT License
+
+═══════════════════════════════════════════════════════════════════════════════
+CHECKLIST
+═══════════════════════════════════════════════════════════════════════════════
+
+Pre-Deployment:
+☐ Review all documentation files
+☐ Add screenshots to public/screenshots/
+☐ Update repository URLs in README.md (replace 'yourusername')
+☐ Verify .env.local is not committed (in .gitignore)
+
+GitHub:
+☐ Repository created
+☐ Code pushed to main branch
+☐ Topics added
+☐ Repository description set
+☐ License visible
+☐ README displays correctly
+
+Production:
+☐ Deployed to platform (Vercel/Netlify/Railway)
+☐ Environment variables configured
+☐ Supabase redirect URLs updated
+☐ Google OAuth configured (if using)
+☐ Custom domain configured (optional)
+☐ SSL certificate active
+
+Testing:
+☐ Homepage loads
+☐ Sign up works
+☐ Sign in works
+☐ Generate architecture works
+☐ Exports work (PNG, PDF, Terraform, JSON)
+☐ History page works
+☐ Dark/light mode works
+☐ Mobile responsive
+
+═══════════════════════════════════════════════════════════════════════════════
+SUPPORT
+═══════════════════════════════════════════════════════════════════════════════
+
+GitHub Issues: https://github.com/yourusername/cloudforge-ai/issues
+Documentation: See all .md files in repository root
+Supabase Docs: https://supabase.com/docs
+Vercel Docs: https://vercel.com/docs
+Next.js Docs: https://nextjs.org/docs
+
+═══════════════════════════════════════════════════════════════════════════════
+                              READY TO DEPLOY! 🚀
+═══════════════════════════════════════════════════════════════════════════════
+
+Start with Step 1 above and work your way through the steps.
+See detailed documentation in the .md files for more information.
+
+Good luck with your launch! 🎉

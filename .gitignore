@@ -1,0 +1,87 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Testing
+coverage/
+*.cover
+.coverage
+.coverage.*
+.pytest_cache/
+*.test.js
+*.test.ts
+*.test.tsx
+
+# Next.js
+.next/
+out/
+dist/
+build/
+
+# Production
+*.tsbuildinfo
+next-env.d.ts
+
+# Misc
+.DS_Store
+*.pem
+
+# Debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# Local env files
+.env
+.env*.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Vercel
+.vercel
+
+# TypeScript
+*.tsbuildinfo
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.classpath
+.settings/
+*.sublime-project
+*.sublime-workspace
+
+# OS
+Thumbs.db
+Desktop.ini
+
+# Temporary files
+*.tmp
+*.temp
+tmp/
+temp/
+
+# Documentation artifacts (not needed in repo)
+ARCHITECTURE_REVIEW_FEATURE.md
+AUTH_FIX_SUMMARY.md
+AUTHENTICATION_SUMMARY.md
+DISABLE_EMAIL_CONFIRMATION.md
+FIX_EMAIL_RATE_LIMIT.md
+MODEL_UPDATE.md
+PREMIUM_FEATURES.md
+SUPABASE_SETUP.md
+SUPABASE_TESTING.md
+TEST_RESULTS.md
+test-auth.md
+test-signup-flow.js
+UPGRADE_SUMMARY.md
+
+# Claude Code artifacts
+.claude/
