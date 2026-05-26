@@ -80,7 +80,7 @@ export default function ReviewDetailPage() {
                   {error || "Review Not Found"}
                 </h2>
                 <p className="text-gray-600 dark:text-gray-400 mb-6">
-                  The review you're looking for doesn't exist or you don't have permission to view it.
+                  The review you&apos;re looking for doesn&apos;t exist or you don&apos;t have permission to view it.
                 </p>
                 <Button asChild>
                   <Link href="/review">

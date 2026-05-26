@@ -141,7 +141,7 @@ export function FileUpload({ onFilesChange, files }: FileUploadProps) {
         return <FileCode className="h-5 w-5" />;
       case "screenshot":
       case "diagram":
-        return <Image className="h-5 w-5" />;
+        return <Image className="h-5 w-5" alt="" />;
     }
   };
 

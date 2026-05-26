@@ -41,6 +41,7 @@ export function RecentReviewsTable({ userId }: RecentReviewsTableProps) {
     if (userId) {
       fetchReviews();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   async function fetchReviews() {
