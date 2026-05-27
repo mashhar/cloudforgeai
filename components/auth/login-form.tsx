@@ -18,6 +18,7 @@ export function LoginForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const redirect = searchParams.get("redirect") || "/dashboard";
+  const appUrl = process.env.NEXT_PUBLIC_APP_URL || window.location.origin;
 
   async function handleEmailAuth(e: React.FormEvent) {
     e.preventDefault();
@@ -31,7 +32,7 @@ export function LoginForm() {
           email,
           password,
           options: {
-            emailRedirectTo: `${window.location.origin}/auth/callback?redirect=${redirect}`
+            emailRedirectTo: `${appUrl}/auth/callback?redirect=${redirect}`
           }
         });
 
@@ -79,7 +80,7 @@ export function LoginForm() {
       const { error } = await supabase.auth.signInWithOAuth({
         provider: "google",
         options: {
-          redirectTo: `${window.location.origin}/auth/callback?redirect=${redirect}`
+          redirectTo: `${appUrl}/auth/callback?redirect=${redirect}`
         }
       });
 
