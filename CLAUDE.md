@@ -42,6 +42,7 @@ Protected routes:
 - `/dashboard` - requires authentication
 - `/architecture/*` - requires authentication
 - `/history` - requires authentication
+- `/review` - requires authentication
 
 Middleware redirects unauthenticated users to `/login?redirect=<original-path>`.
 
